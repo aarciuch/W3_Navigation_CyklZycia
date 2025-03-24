@@ -1,6 +1,8 @@
 package psm.lab.w3_navigation_cyklzycia
 
 import android.util.Log
+import androidx.compose.runtime.State
+import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
@@ -13,8 +15,8 @@ class DaneVM() : ViewModel() {
     private var _zmienna1 = MutableStateFlow<Int>(0)
     val zmienna1 = _zmienna1.asStateFlow()
 
-    private var _zmienna2 = MutableStateFlow<Int>(0)
-    val zmienna2 = _zmienna2.asStateFlow()
+    private var _zmienna2 = mutableStateOf<Int>(0)
+    val zmienna2 :  State<Int> = _zmienna2
 
 
 

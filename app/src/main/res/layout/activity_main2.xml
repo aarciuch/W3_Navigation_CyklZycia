@@ -12,43 +12,28 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:background="#00FFFF"
+        android:background="#08FF00"
         android:layout_margin="24.dp"
         tools:context=".MainActivity2">
 
         <TextView
-            android:id="@+id/tv1"
+            android:id="@+id/tv2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:textSize="30.sp"
             android:text="Activity2" />
 
-        <TextView
+        <Button
+            android:id="@+id/goBack"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="30.sp"
-            android:text="parametr:" />
-
-        <EditText
-            android:id="@+id/paramTxt"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:inputType="number"
-            android:textSize="30.sp"
-            android:text="5"/>
+            android:text="Go back"/>
 
         <Button
-            android:id="@+id/go22WithParams"
+            android:id="@+id/posInt"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Go to 2"/>
-
-        <TextView
-            android:id="@+id/wynik"
-            android:textSize="30.sp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="wynik: "/>
-
+            android:text="pośredni Intent"/>
 
     </LinearLayout>
 </layout>

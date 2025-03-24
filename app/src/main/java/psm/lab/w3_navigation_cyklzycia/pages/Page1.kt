@@ -18,6 +18,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.input.pointer.motionEventSpy
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import psm.lab.w3_navigation_cyklzycia.Dane
 
@@ -30,7 +31,9 @@ fun Page1(navController : NavController, dane: Dane) {
                 .padding(end = 24.dp)
                 .fillMaxWidth())
     {
-        Text("Hello Page1 liczba = ${liczbaPage1} dane = ${dane.dataInt}", modifier = Modifier.padding(top = 20.dp))
+        Text(text="Hello Page1 liczba = ${liczbaPage1} dane = ${dane.dataInt}",
+            modifier = Modifier.padding(top = 20.dp),
+            fontSize = 20.sp)
         Button(modifier = Modifier
                     .padding(all=8.dp)
                     .fillMaxWidth(),

@@ -30,6 +30,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
@@ -145,6 +146,7 @@ fun BottomNavigationBar(navController: NavController, dane: Dane) {
                     text = "Page1",
                     style = MaterialTheme.typography.bodySmall,
                     color = MaterialTheme.colorScheme.primary,
+                    fontSize = 20.sp
                 )
                 IconButton(onClick = { navController.navigate(route = Pages.Page1.name) })  {
                     Icon(Icons.Filled.Home, contentDescription = "Page1")
@@ -155,6 +157,7 @@ fun BottomNavigationBar(navController: NavController, dane: Dane) {
                     text = "Page2",
                     style = MaterialTheme.typography.bodySmall,
                     color = MaterialTheme.colorScheme.primary,
+                    fontSize = 20.sp
                 )
                 IconButton(onClick = { navController.navigate(route = "${Pages.Page2.name}/${++dane.dataInt}") }) {
                     Icon(Icons.Filled.Favorite, contentDescription = "Page2")
@@ -165,6 +168,7 @@ fun BottomNavigationBar(navController: NavController, dane: Dane) {
                     text = "Page3",
                     style = MaterialTheme.typography.bodySmall,
                     color = MaterialTheme.colorScheme.primary,
+                    fontSize = 20.sp
                 )
                 IconButton(onClick = { navController.navigate(route = Pages.Page3.name) })  {
                     Icon(Icons.Filled.Build, contentDescription = "Page3")
@@ -175,6 +179,7 @@ fun BottomNavigationBar(navController: NavController, dane: Dane) {
                     text = "Activity2",
                     style = MaterialTheme.typography.bodySmall,
                     color = MaterialTheme.colorScheme.primary,
+                    fontSize = 20.sp
                 )
                 IconButton(onClick = {
                     context.startActivity(Intent(context, MainActivity2::class.java)) }) {
