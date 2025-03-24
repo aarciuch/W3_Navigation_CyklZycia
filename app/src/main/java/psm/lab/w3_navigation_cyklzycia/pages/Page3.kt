@@ -11,6 +11,10 @@ import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -40,8 +44,9 @@ fun Page3(navController: NavController, dane: Dane) {
 
         )
     {
-        var stan = vM.zmienna1.collectAsState().value
-        var stan2 = vM.zmienna2.collectAsState().value
+        //var stan = vM.zmienna1.collectAsState().value
+        var stan =  vM.zmienna1.collectAsState().value
+        val stan2 by remember { vM.zmienna2 }
         HorizontalDivider(thickness = 4.dp, color = Color.Red)
         Text(
             text = "Coroutine: dane = ${dane.dataInt}, ${stan}",
