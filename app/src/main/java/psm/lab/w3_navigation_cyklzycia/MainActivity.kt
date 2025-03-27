@@ -1,5 +1,6 @@
 package psm.lab.w3_navigation_cyklzycia
 
+import android.app.Application
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
@@ -8,7 +9,6 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -25,12 +25,13 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.AbsoluteAlignment
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.lifecycle.AndroidViewModel
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
@@ -43,15 +44,18 @@ import psm.lab.w3_navigation_cyklzycia.pages.Page3
 import psm.lab.w3_navigation_cyklzycia.pages.Pages
 import psm.lab.w3_navigation_cyklzycia.ui.theme.W3_Navigation_CyklZyciaTheme
 
+
 class MainActivity : ComponentActivity() {
     val SP_TAG = "SharedPref"
     var d: Dane = Dane()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
         enableEdgeToEdge()
         setContent {
             W3_Navigation_CyklZyciaTheme {
-                AppWithBottomBarNavigation(d)
+
                 if (savedInstanceState != null) d.dataInt = savedInstanceState.getInt("dataState")
                 else {
                     val persistantState =
@@ -59,6 +63,8 @@ class MainActivity : ComponentActivity() {
                     d.dataInt = persistantState.getInt("DANE", 0)
                 }
                 Log.i("STATE ACTIVITY 1", "onCreate")
+
+                AppWithBottomBarNavigation(d)
             }
         }
     }
@@ -109,7 +115,6 @@ class MainActivity : ComponentActivity() {
 @Composable
 fun AppWithBottomBarNavigation(dane: Dane) {
     val navController = rememberNavController()
-
     Scaffold(
         bottomBar = {
             BottomNavigationBar(navController, dane)
@@ -127,7 +132,7 @@ fun AppWithBottomBarNavigation(dane: Dane) {
             ) {
                 Page2(navController, it.arguments?.getString("itemId") ?: "")
             }
-            composable(route = Pages.Page3.name) { Page3(navController, dane) }
+            composable(route = Pages.Page3.name) { Page3(navController, dane)}
         }
     }
 }

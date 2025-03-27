@@ -75,4 +75,12 @@ dependencies {
     debugImplementation(libs.androidx.ui.test.manifest)
 
     implementation (libs.androidx.navigation.compose)
+
+    implementation (libs.androidx.work.runtime.ktx)
+    implementation (libs.androidx.lifecycle.livedata.ktx)
+    implementation (libs.androidx.lifecycle.viewmodel.ktx)
+    implementation (libs.ui)
+    implementation (libs.material3)
+    implementation (libs.kotlinx.coroutines.android)
+
 }
