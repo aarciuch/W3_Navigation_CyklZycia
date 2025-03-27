@@ -1,14 +1,20 @@
 package psm.lab.w3_navigation_cyklzycia
 
+import android.content.ComponentName
 import android.content.Context
 import android.content.Intent
+import android.content.ServiceConnection
 import android.os.Bundle
+import android.os.Handler
+import android.os.IBinder
+import android.os.Looper
+import android.os.Message
+import android.os.Messenger
 import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -18,6 +24,7 @@ import androidx.compose.material.icons.filled.Build
 import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.material.icons.filled.Home
 import androidx.compose.material.icons.filled.LocationOn
+import androidx.compose.material.icons.filled.Star
 import androidx.compose.material3.BottomAppBar
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -25,11 +32,8 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.AbsoluteAlignment
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import androidx.navigation.NavType
@@ -40,18 +44,24 @@ import androidx.navigation.navArgument
 import psm.lab.w3_navigation_cyklzycia.pages.Page1
 import psm.lab.w3_navigation_cyklzycia.pages.Page2
 import psm.lab.w3_navigation_cyklzycia.pages.Page3
+import psm.lab.w3_navigation_cyklzycia.pages.Page4
 import psm.lab.w3_navigation_cyklzycia.pages.Pages
 import psm.lab.w3_navigation_cyklzycia.ui.theme.W3_Navigation_CyklZyciaTheme
+
 
 class MainActivity : ComponentActivity() {
     val SP_TAG = "SharedPref"
     var d: Dane = Dane()
+
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
+
+        //enableEdgeToEdge()
         setContent {
             W3_Navigation_CyklZyciaTheme {
-                AppWithBottomBarNavigation(d)
+
                 if (savedInstanceState != null) d.dataInt = savedInstanceState.getInt("dataState")
                 else {
                     val persistantState =
@@ -59,6 +69,8 @@ class MainActivity : ComponentActivity() {
                     d.dataInt = persistantState.getInt("DANE", 0)
                 }
                 Log.i("STATE ACTIVITY 1", "onCreate")
+
+                AppWithBottomBarNavigation(d)
             }
         }
     }
@@ -109,7 +121,6 @@ class MainActivity : ComponentActivity() {
 @Composable
 fun AppWithBottomBarNavigation(dane: Dane) {
     val navController = rememberNavController()
-
     Scaffold(
         bottomBar = {
             BottomNavigationBar(navController, dane)
@@ -127,7 +138,8 @@ fun AppWithBottomBarNavigation(dane: Dane) {
             ) {
                 Page2(navController, it.arguments?.getString("itemId") ?: "")
             }
-            composable(route = Pages.Page3.name) { Page3(navController, dane) }
+            composable(route = Pages.Page3.name) { Page3(navController, dane)}
+            composable(route = Pages.Page4.name) { Page4(navController) }
         }
     }
 }
@@ -184,6 +196,18 @@ fun BottomNavigationBar(navController: NavController, dane: Dane) {
                 IconButton(onClick = {
                     context.startActivity(Intent(context, MainActivity2::class.java)) }) {
                     Icon(Icons.Filled.LocationOn, contentDescription = "Activity2")
+                }
+            }
+            Column () {
+                Text(
+                    text = "Service",
+                    style = MaterialTheme.typography.bodySmall,
+                    color = MaterialTheme.colorScheme.primary,
+                    fontSize = 20.sp
+                )
+                IconButton(onClick = {
+                    navController.navigate(route = Pages.Page4.name)}) {
+                    Icon(Icons.Filled.Star, contentDescription = "Service")
                 }
             }
         }
