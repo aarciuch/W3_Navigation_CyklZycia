@@ -16,9 +16,14 @@
         <service
             android:name=".ArtService"
             android:enabled="true"
-            android:exported="true"/>
-            <!--android:permission="psm.lab.w3_navigation_cyklzycia.PERMISSION_ACCESS_SERVICE"-->
+            android:exported="true">
+                <intent-filter>
+                    <action android:name="psm.lab.w3_navigation_cyklzycia.ART_SERVICE"/>
+                </intent-filter>
+        </service>
+        <!-- android:permission="psm.lab.w3_navigation_cyklzycia.PERMISSION_ACCESS_SERVICE"-->
         <activity
+
             android:name=".MainActivity3"
             android:exported="false" />
         <activity
